@@ -1,0 +1,26 @@
+# ไฟล์และโฟลเดอร์ของ Visual Studio
+.vs/
+*.vcxproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.pdb
+*.opendb
+*.VC.db
+*.VC.opendb
+*.exe
+*.dll
+*.obj
+*.log
+
+# ไฟล์และโฟลเดอร์ที่เกี่ยวข้องกับระบบปฏิบัติการ
+.DS_Store
+Thumbs.db
+
+# โฟลเดอร์ที่สร้างโดย NuGet
+packages/
+
+# บิลด์เอาท์พุทโฟลเดอร์
+bin/
+obj/
