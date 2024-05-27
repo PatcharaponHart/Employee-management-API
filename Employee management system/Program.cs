@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DataContext"));
 });
 
 builder.Services.Configure<ApiBehaviorOptions>(opt =>
@@ -59,3 +59,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+string connectionString = app.Configuration.GetConnectionString("DataContext")!;
