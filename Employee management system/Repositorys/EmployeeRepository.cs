@@ -19,6 +19,7 @@ namespace Employee_management_system.Repositorys
                               join pro in _context.Projects on emp.DepartmentID equals pro.DepartmentID
                               select new
                               {
+                                  emp.EmployeeID,
                                   emp.FirstName,
                                   emp.LastName,
                                   emp.Email,
@@ -35,15 +36,18 @@ namespace Employee_management_system.Repositorys
             _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
         }
-        public void DeleteEmployee(int id)
+        public async Task<Employee> DeleteEmployee(int id)
         {
-            var employeeToDelete = _context.Employees.Find(id);
-            if (employeeToDelete != null)
+            var employeeToDelete = await _context.Employees.FindAsync(id);
+            if (employeeToDelete == null)
             {
-                _context.Employees.Remove(employeeToDelete);
-                _context.SaveChanges();
-            }
+              return null;
+            } 
+            _context.Employees.Remove(employeeToDelete);
+                await _context.SaveChangesAsync();
+            return employeeToDelete;
         }
+
         public void UpdateEmployee(Employee employee)
         {
             var updateEmployee = _context.Employees.Find(employee.EmployeeID);

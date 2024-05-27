@@ -6,7 +6,7 @@ namespace Employee_management_system.Repositorys
     {
         Task<List<object>> GetEmployees();
         Task PushEmployee(Employee employee);
-        void DeleteEmployee(int id);
+        Task<Employee> DeleteEmployee(int id);
         void UpdateEmployee(Employee employee);
         Task<List<object>> SearchEmployee(string? search);
     }

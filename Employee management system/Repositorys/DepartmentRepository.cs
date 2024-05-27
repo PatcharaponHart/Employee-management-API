@@ -19,6 +19,7 @@ namespace Employee_management_system.Repositorys
                                 select new
                                
                                 {
+                                    dept.DepartmentID,
                                     dept.DepartmentName,
                                     dept.ManagerID,
                                     pro.ProjectName

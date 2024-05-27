@@ -20,9 +20,10 @@ namespace Employee_management_system.Service
         {
             await _employeeRepository.PushEmployee(employee);
         }
-        public void DeleteEmployee(int id)
+        public async Task<Employee> DeleteEmployee(int id)
         {
-            _employeeRepository.DeleteEmployee(id);
+             var result = await _employeeRepository.DeleteEmployee(id);
+            return result;
         }
         public void UpdateEmployee(Employee employee)
         {

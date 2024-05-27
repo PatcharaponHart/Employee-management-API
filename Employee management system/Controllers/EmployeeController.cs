@@ -35,11 +35,19 @@ namespace Employee_management_system.Controllers
         }
 
         [HttpDelete("DeleteEmployee/{id}")]
-        public ActionResult DeleteEmployee(int id)
+        public async Task<ActionResult<Employee>> DeleteEmployee(int id)
         {
-            _employeeService.DeleteEmployee(id);
-            return Ok("Delete Successfully");
+            try
+            {
+                await _employeeService.DeleteEmployee(id);
+                return Ok(new { message = "Employee deleted successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error deleting employee", error = ex.Message });
+            }
         }
+
         [HttpPut("UpdateEmployee")]
         public ActionResult UpdateEmployee(Employee employee)
         {

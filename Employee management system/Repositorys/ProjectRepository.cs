@@ -19,6 +19,7 @@ namespace Employee_management_system.Repositorys
                                 join emp in _context.Employees on pro.DepartmentID equals emp.DepartmentID
                                 select new
                                 {
+                                    pro.ProjectID,
                                     pro.ProjectName,
                                     dept.ManagerID,
                                     emp.FirstName,
@@ -46,12 +47,17 @@ namespace Employee_management_system.Repositorys
         public void UpdateProject(Project project)
         {
             var updateProject = _context.Projects.Find(project.ProjectID);
-            updateProject.ProjectName = project.ProjectName;
-            updateProject.StartDate = project.StartDate;
-            updateProject.EndDate = project.EndDate;
-
-            _context.SaveChanges();
+            if (updateProject != null)
+            {
+                Console.WriteLine($"Updating project ID: {project.ProjectID}"); // เพิ่มบรรทัดนี้เพื่อตรวจสอบว่า method ถูกเรียกกี่ครั้ง
+                updateProject.ProjectName = project.ProjectName;
+                updateProject.StartDate = project.StartDate;
+                updateProject.EndDate = project.EndDate;
+                updateProject.DepartmentID = project.DepartmentID; // เพิ่มบรรทัดนี้ถ้าคุณต้องการอัปเดต DepartmentID ด้วย
+                _context.SaveChanges();
+            }
         }
+
         public async Task<List<object>> SearchProject(string? search)
         {
 
